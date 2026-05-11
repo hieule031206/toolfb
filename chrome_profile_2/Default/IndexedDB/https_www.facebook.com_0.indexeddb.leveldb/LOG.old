@@ -1,0 +1,10 @@
+2026/05/11-21:07:43.639 5f3c Reusing MANIFEST f:\toolfb\chrome_profile_2\Default\IndexedDB\https_www.facebook.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/05/11-21:07:43.639 5f3c Recovering log #4
+2026/05/11-21:07:43.662 5f3c Reusing old log f:\toolfb\chrome_profile_2\Default\IndexedDB\https_www.facebook.com_0.indexeddb.leveldb/000004.log 
+2026/05/11-21:17:01.153 67cc Level-0 table #8: started
+2026/05/11-21:17:01.165 67cc Level-0 table #8: 1666612 bytes OK
+2026/05/11-21:17:01.166 67cc Delete type=0 #4
+2026/05/11-21:17:01.176 67cc Compacting 1@1 + 1@2 files
+2026/05/11-21:17:01.189 67cc Generated table #9@1: 3970 keys, 202877 bytes
+2026/05/11-21:17:01.189 67cc Compacted 1@1 + 1@2 files => 202877 bytes
+2026/05/11-21:17:01.190 67cc compacted to: files[ 0 0 1 0 0 0 0 ]

@@ -1,0 +1,5 @@
+2026/05/11-21:21:28.395 67cc Reusing MANIFEST f:\toolfb\chrome_profile_2\Default\IndexedDB\https_www.facebook.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/05/11-21:21:28.395 67cc Recovering log #7
+2026/05/11-21:21:28.416 67cc Reusing old log f:\toolfb\chrome_profile_2\Default\IndexedDB\https_www.facebook.com_0.indexeddb.leveldb/000007.log 
+2026/05/11-21:21:28.417 67cc Delete type=2 #5
+2026/05/11-21:21:28.417 67cc Delete type=2 #8

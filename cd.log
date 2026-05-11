@@ -1,0 +1,766 @@
+[1778410604.155][INFO]: Starting ChromeDriver 147.0.7727.117 (474cc805edd6b22006509896c910f6b6da2427ad-refs/branch-heads/7727_111@{#4}) on port 54721
+[1778410604.155][INFO]: Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1778410604.159][INFO]: ChromeDriver was started successfully on port 54721
+[1778410604.185][INFO]: [226ac65d6f8898fbcb7dff713719c1c1] COMMAND InitSession {
+   "capabilities": {
+      "alwaysMatch": {
+         "browserName": "chrome",
+         "goog:chromeOptions": {
+            "args": [ "--user-data-dir=f:\\toolfb\\chrome_profile", "--profile-directory=Default", "--no-sandbox", "--no-first-run", "--disable-dev-shm-usage" ],
+            "excludeSwitches": [ "enable-automation" ],
+            "extensions": [  ],
+            "useAutomationExtension": false
+         },
+         "pageLoadStrategy": "normal"
+      },
+      "firstMatch": [ {
+      } ]
+   }
+}
+[1778410604.203][WARNING]: Deprecated chrome option is ignored: useAutomationExtension
+[1778410604.203][WARNING]: Deprecated chrome option is ignored: useAutomationExtension
+[1778410604.204][INFO]: Browser search. Trying... f:\toolfb\cd117\chromedriver-win64\chrome.exe
+[1778410604.204][INFO]: Browser search. Trying... f:\toolfb\cd117\chromedriver-win64\chrome.exe
+[1778410604.204][INFO]: Browser search. Trying... f:\toolfb\cd117\chromedriver-win64\chromium.exe
+[1778410604.205][INFO]: Browser search. Trying... C:\Users\iamtl\AppData\Local\Google\Chrome\Application\chrome.exe
+[1778410604.205][INFO]: Browser search. Trying... C:\Program Files\Google\Chrome\Application\chrome.exe
+[1778410604.205][INFO]: Browser search. Found at  C:\Program Files\Google\Chrome\Application\chrome.exe
+[1778410604.206][INFO]: Populating Preferences file: {
+   "NewTabPage": {
+      "PrevNavigationTime": "13422884174042720"
+   },
+   "accessibility": {
+      "captions": {
+         "headless_caption_enabled": false
+      }
+   },
+   "account_tracker_service_last_update": "13422884174089567",
+   "aim_eligibility_service": {
+      "aim_eligibility_response": "CAEQARgAIAAwATrcAQovCgEEEgIBAhoJCAQSAQEiAgEDIgsIARAKKgMJBAJAASIMCAIQCioCCQI6AgEDOAoiIwgBEgxVcGxvYWQgaW1hZ2UaCwgBEAoqAwkEAkABIgIIXSgBIiMIAhILVXBsb2FkIGZpbGUaDAgCEAoqAgkCOgIBAyICCFwoAypICAQaDUNyZWF0ZSBpbWFnZXMiBkNyZWF0ZSoTRGVzY3JpYmUgeW91ciBpbWFnZTIJCAQSAQEiAgEDOgkKBGltZ24SATFKAghkOgcKBVRvb2xzSgxBc2sgYW55dGhpbmdCDQoJCgN1ZG0SAjUwEAFIAVAB"
+   },
+   "alternate_error_pages": {
+      "enabled": false
+   },
+   "autocomplete": {
+      "retention_policy_last_version": 147
+   },
+   "autofill": {
+      "last_version_deduped": 147
+   },
+   "bookmark": {
+      "storage_computation_last_update": "13422884174086252"
+   },
+   "browser": {
+      "check_default_browser": false,
+      "window_placement": {
+         "bottom": 808,
+         "left": 10,
+         "maximized": false,
+         "right": 1061,
+         "top": 10,
+         "work_area_bottom": 816,
+         "work_area_left": 0,
+         "work_area_right": 1536,
+         "work_area_top": 0
+      }
+   },
+   "commerce_daily_metrics_last_update_time": "13422884174086740",
+   "countryid_at_install": 22094,
+   "distribution": {
+      "import_bookmarks": false,
+      "import_history": false,
+      "import_search_engine": false,
+      "make_chrome_default_for_user": false,
+      "skip_first_run_ui": true
+   },
+   "dns_prefetching": {
+      "enabled": false
+   },
+   "domain_diversity": {
+      "last_reporting_timestamp": "13422884174088850",
+      "last_reporting_timestamp_v4": "13422884174088858"
+   },
+   "enterprise_profile_guid": "92ebea95-3bd4-4f23-95c2-d4e28bbe9243",
+   "extensions": {
+      "alerts": {
+         "initialized": true
+      },
+      "chrome_url_overrides": {
+      }
+   },
+   "gaia_cookie": {
+      "changed_time": 1778410574.80726,
+      "hash": "2jmj7l5rSw0yVb/vlWAYkK/YBwk=",
+      "last_list_accounts_binary_data": "",
+      "periodic_report_time_2": "13422884173976520"
+   },
+   "gcm": {
+      "product_category_for_subtypes": "com.chrome.windows"
+   },
+   "google": {
+      "services": {
+         "signin_scoped_device_id": "7c3adb7c-ab4b-4b93-a2e1-05d93a192802"
+      }
+   },
+   "in_product_help": {
+      "recent_session_enabled_time": "13422884173985599",
+      "recent_session_start_times": [ "13422884173985599" ],
+      "session_last_active_time": "13422884173985599",
+      "session_number": 2,
+      "session_start_time": "13422884173985599"
+   },
+   "intl": {
+      "selected_languages": "en-US,en"
+   },
+   "invalidation": {
+      "per_sender_registered_for_invalidation": {
+         "1013309121859": {
+         },
+         "947318989803": {
+         }
+      }
+   },
+   "media": {
+      "engagement": {
+         "schema_version": 5
+      }
+   },
+   "media_router": {
+      "receiver_id_hash_token": "Qf2ARZ7JAiiyJhdZgkvLvzX4zCFT8avHOePjhwb2ePmBHQ/tve8hVQfwZ9piYf2xph0XCH7KWcU+Uv8TQ/9o1g=="
+   },
+   "migrated_user_scripts_toggle": true,
+   "ntp": {
+      "last_shortcuts_staleness_update": "13422884174295178",
+      "num_personal_suggestions": 1
+   },
+   "optimization_guide": {
+      "hintsfetcher": {
+         "hosts_successfully_fetched": {
+         }
+      },
+      "previously_registered_optimization_types": {
+         "ABOUT_THIS_SITE": true,
+         "AUTOFILL_ACTOR_IFRAME_ORIGIN_ALLOWLIST": true,
+         "DIGITAL_CREDENTIALS_LOW_FRICTION": true,
+         "GLIC_ACTION_PAGE_BLOCK": true,
+         "HISTORY_CLUSTERS": true,
+         "LENS_OVERLAY_EDU_ACTION_CHIP_ALLOWLIST": true,
+         "LENS_OVERLAY_EDU_ACTION_CHIP_BLOCKLIST": true,
+         "LOADING_PREDICTOR": true,
+         "MERCHANT_TRUST_SIGNALS_V2": true,
+         "PAGE_ENTITIES": true,
+         "PRICE_TRACKING": true,
+         "SALIENT_IMAGE": true,
+         "SAVED_TAB_GROUP": true,
+         "V8_COMPILE_HINTS": true
+      }
+   },
+   "privacy_sandbox": {
+      "first_party_sets_data_access_allowed_initialized": true
+   },
+   "profile": {
+      "avatar_index": 26,
+      "background_password_check": {
+         "check_fri_weight": 9,
+         "check_interval": "2592000000000",
+         "check_mon_weight": 6,
+         "check_sat_weight": 6,
+         "check_sun_weight": 6,
+         "check_thu_weight": 9,
+         "check_tue_weight": 9,
+         "check_wed_weight": 9,
+         "next_check_time": "13423433803871401"
+      },
+      "content_settings": {
+         "exceptions": {
+            "3pcd_heuristics_grants": {
+            },
+            "abusive_notification_permissions": {
+            },
+            "access_to_get_all_screens_media_in_session": {
+            },
+            "anti_abuse": {
+            },
+            "app_banner": {
+            },
+            "ar": {
+            },
+            "are_suspicious_notifications_allowlisted_by_user": {
+            },
+            "auto_picture_in_picture": {
+            },
+            "auto_select_certificate": {
+            },
+            "automatic_downloads": {
+            },
+            "automatic_fullscreen": {
+            },
+            "autoplay": {
+            },
+            "background_sync": {
+            },
+            "bluetooth_chooser_data": {
+            },
+            "bluetooth_guard": {
+            },
+            "bluetooth_scanning": {
+            },
+            "camera_pan_tilt_zoom": {
+            },
+            "captured_surface_control": {
+            },
+            "client_hints": {
+            },
+            "clipboard": {
+            },
+            "controlled_frame": {
+            },
+            "cookie_controls_metadata": {
+            },
+            "cookies": {
+            },
+            "direct_sockets": {
+            },
+            "direct_sockets_private_network_access": {
+            },
+            "display_media_system_audio": {
+            },
+            "disruptive_notification_permissions": {
+            },
+            "durable_storage": {
+            },
+            "fedcm_idp_registration": {
+            },
+            "fedcm_idp_signin": {
+               "https://accounts.google.com:443,*": {
+                  "last_modified": "13422884174807554",
+                  "setting": {
+                     "chosen-objects": [ {
+                        "idp-origin": "https://accounts.google.com",
+                        "idp-signin-status": false
+                     } ]
+                  }
+               }
+            },
+            "fedcm_share": {
+            },
+            "file_system_access_chooser_data": {
+            },
+            "file_system_access_extended_permission": {
+            },
+            "file_system_access_restore_permission": {
+            },
+            "file_system_last_picked_directory": {
+            },
+            "file_system_read_guard": {
+            },
+            "file_system_write_guard": {
+            },
+            "formfill_metadata": {
+            },
+            "geolocation": {
+            },
+            "geolocation_with_options": {
+            },
+            "hand_tracking": {
+            },
+            "has_migrated_local_network_access": true,
+            "hid_chooser_data": {
+            },
+            "hid_guard": {
+            },
+            "http_allowed": {
+            },
+            "https_enforced": {
+            },
+            "idle_detection": {
+            },
+            "images": {
+            },
+            "important_site_info": {
+            },
+            "initialized_translations": {
+            },
+            "intent_picker_auto_display": {
+            },
+            "javascript": {
+            },
+            "javascript_jit": {
+            },
+            "javascript_optimizer": {
+            },
+            "keyboard_lock": {
+            },
+            "legacy_cookie_access": {
+            },
+            "legacy_cookie_scope": {
+            },
+            "local_fonts": {
+            },
+            "local_network": {
+            },
+            "local_network_access": {
+            },
+            "loopback_network": {
+            },
+            "media_engagement": {
+            },
+            "media_stream_camera": {
+            },
+            "media_stream_mic": {
+            },
+            "midi_sysex": {
+            },
+            "mixed_script": {
+            },
+            "nfc_devices": {
+            },
+            "notification_interactions": {
+            },
+            "notification_permission_review": {
+            },
+            "notifications": {
+            },
+            "ondevice_languages_downloaded": {
+            },
+            "password_protection": {
+            },
+            "payment_handler": {
+            },
+            "permission_actions_history": {
+            },
+            "permission_autoblocking_data": {
+            },
+            "permission_autorevocation_data": {
+            },
+            "pointer_lock": {
+            },
+            "popups": {
+            },
+            "protected_media_identifier": {
+            },
+            "protocol_handler": {
+            },
+            "reduced_accept_language": {
+            },
+            "safe_browsing_url_check_data": {
+            },
+            "sensors": {
+            },
+            "serial_chooser_data": {
+            },
+            "serial_guard": {
+            },
+            "site_engagement": {
+               "chrome://newtab/,*": {
+                  "last_modified": "13422884174109367",
+                  "setting": {
+                     "lastEngagementTime": 1.3422884174109356e+16,
+                     "lastShortcutLaunchTime": 0.0,
+                     "pointsAddedToday": 3.0,
+                     "rawScore": 3.0
+                  }
+               }
+            },
+            "sound": {
+            },
+            "speaker_selection": {
+            },
+            "ssl_cert_decisions": {
+            },
+            "storage_access": {
+            },
+            "storage_access_header_origin_trial": {
+            },
+            "subresource_filter": {
+            },
+            "subresource_filter_data": {
+            },
+            "suspicious_notification_ids": {
+            },
+            "suspicious_notification_show_original": {
+            },
+            "top_level_storage_access": {
+            },
+            "unused_site_permissions": {
+            },
+            "usb_chooser_data": {
+            },
+            "usb_guard": {
+            },
+            "vr": {
+            },
+            "web_app_installation": {
+            },
+            "webid_api": {
+            },
+            "webid_auto_reauthn": {
+            },
+            "window_placement": {
+            }
+         },
+         "pattern_pairs": {
+            "https://*,*": {
+               "media-stream": {
+                  "audio": "Default",
+                  "video": "Default"
+               }
+            }
+         },
+         "pref_version": 1
+      },
+      "creation_time": "13422884173687153",
+      "default_content_setting_values": {
+         "geolocation": 1,
+         "has_migrated_local_network_access": true
+      },
+      "default_content_settings": {
+         "geolocation": 1,
+         "mouselock": 1,
+         "notifications": 1,
+         "popups": 1,
+         "ppapi-broker": 1
+      },
+      "exit_type": "Crashed",
+      "last_engagement_time": "13422884174109356",
+      "managed": {
+         "locally_parent_approved_extensions": {
+         },
+         "locally_parent_approved_extensions_migration_state": 1
+      },
+      "managed_user_id": "",
+      "name": "Your Chrome",
+      "password_manager_enabled": false
+   },
+   "safebrowsing": {
+      "enabled": false,
+      "event_timestamps": {
+      },
+      "metrics_last_log_time": "13422884173",
+      "scout_reporting_enabled_when_deprecated": false
+   },
+   "safety_hub": {
+      "unused_site_permissions_revocation": {
+         "migration_completed": true
+      }
+   },
+   "saved_tab_groups": {
+      "did_enable_shared_tab_groups_in_last_session": false,
+      "specifics_to_data_migration": true
+   },
+   "search": {
+      "suggest_enabled": false
+   },
+   "segmentation_platform": {
+      "client_result_prefs": "ClIKDXNob3BwaW5nX3VzZXISQQo2DQAAAAAQnuLtmqyB7BcaJAocChoNAAAAPxIMU2hvcHBpbmdVc2VyGgVPdGhlchIEEAIYBCADEKDj7ZqsgewX",
+      "uma_in_sql_start_time": "13422884173980149"
+   },
+   "sessions": {
+      "event_log": [ {
+         "crashed": false,
+         "time": "13422884173979019",
+         "type": 0
+      } ],
+      "session_data_status": 1
+   },
+   "settings": {
+      "force_google_safesearch": false
+   },
+   "signin": {
+      "accounts_metadata_dict": {
+      },
+      "allowed": true
+   },
+   "site_search_settings": {
+      "overridden_keywords": [  ]
+   },
+   "syncing_theme_prefs_migrated_to_non_syncing": true,
+   "tab_search": {
+      "pinned_to_tabstrip": false,
+      "pinned_to_tabstrip_migration_complete": true
+   },
+   "toolbar": {
+      "pinned_cast_migration_complete": true,
+      "pinned_chrome_labs_migration_complete": true
+   },
+   "translate": {
+      "enabled": false
+   },
+   "translate_site_blacklist": [  ],
+   "translate_site_blocklist_with_time": {
+   },
+   "web_apps": {
+      "did_migrate_default_chrome_apps": [ "MigrateDefaultChromeAppToWebAppsGSuite", "MigrateDefaultChromeAppToWebAppsNonGSuite" ],
+      "last_preinstall_synchronize_version": "147"
+   }
+}
+[1778410604.206][INFO]: Populating Local State file: {
+   "autofill": {
+      "ablation_seed": "RChnHP1En2w="
+   },
+   "background_mode": {
+      "enabled": false
+   },
+   "breadcrumbs": {
+      "enabled": false,
+      "enabled_time": "13422884173958149"
+   },
+   "browser": {
+      "shortcut_migration_version": "147.0.7727.138",
+      "whats_new": {
+         "enabled_order": [ "SyncAccountSettings", "PdfInk2" ]
+      }
+   },
+   "hardware_acceleration_mode_previous": true,
+   "legacy": {
+      "profile": {
+         "name": {
+            "migrated": true
+         }
+      }
+   },
+   "management": {
+      "platform": {
+         "azure_active_directory": 0,
+         "enterprise_mdm_win": 0
+      }
+   },
+   "network_time": {
+      "network_time_mapping": {
+         "local": 1.778410574569361e+12,
+         "network": 1.778410570369e+12,
+         "ticks": 23981232846.0,
+         "uncertainty": 10168831.0
+      }
+   },
+   "optimization_guide": {
+      "model_cache_key_mapping": {
+         "13E6DC4029A1E4B4C1": "4F40902F3B6AE19A",
+         "15E6DC4029A1E4B4C1": "4F40902F3B6AE19A",
+         "20E6DC4029A1E4B4C1": "4F40902F3B6AE19A",
+         "24E6DC4029A1E4B4C1": "E6DC4029A1E4B4C1",
+         "25E6DC4029A1E4B4C1": "4F40902F3B6AE19A",
+         "26E6DC4029A1E4B4C1": "4F40902F3B6AE19A",
+         "2E6DC4029A1E4B4C1": "4F40902F3B6AE19A",
+         "43E6DC4029A1E4B4C1": "4F40902F3B6AE19A",
+         "45E6DC4029A1E4B4C1": "4F40902F3B6AE19A",
+         "9E6DC4029A1E4B4C1": "4F40902F3B6AE19A"
+      },
+      "model_execution": {
+         "last_usage_by_feature": {
+         }
+      },
+      "model_store_metadata": {
+         "13": {
+            "4F40902F3B6AE19A": {
+               "et": "13425476186691315",
+               "kbvd": false,
+               "mbd": "13\\E6DC4029A1E4B4C1\\96228B346F5ACA00",
+               "v": "1673999601"
+            }
+         },
+         "15": {
+            "4F40902F3B6AE19A": {
+               "et": "13425476187003719",
+               "kbvd": true,
+               "mbd": "15\\E6DC4029A1E4B4C1\\6762AA79C4FCD6C9",
+               "v": "5"
+            }
+         },
+         "2": {
+            "4F40902F3B6AE19A": {
+               "et": "13425476186443716",
+               "kbvd": true,
+               "mbd": "2\\E6DC4029A1E4B4C1\\CE2B353328F68211",
+               "v": "1679317318"
+            }
+         },
+         "20": {
+            "4F40902F3B6AE19A": {
+               "et": "13425476186909063",
+               "kbvd": false,
+               "mbd": "20\\E6DC4029A1E4B4C1\\5707AAA148697B3A",
+               "v": "1776093095"
+            }
+         },
+         "24": {
+            "E6DC4029A1E4B4C1": {
+               "et": "13425476188677423",
+               "kbvd": false,
+               "mbd": "24\\E6DC4029A1E4B4C1\\F0B3E07D0A0ED5C2",
+               "v": "1728324084"
+            }
+         },
+         "25": {
+            "4F40902F3B6AE19A": {
+               "et": "13425476188556948",
+               "kbvd": false,
+               "mbd": "25\\E6DC4029A1E4B4C1\\F19B3248178CB21C",
+               "v": "1774969334"
+            }
+         },
+         "26": {
+            "4F40902F3B6AE19A": {
+               "et": "13434980188716517",
+               "kbvd": false,
+               "mbd": "26\\E6DC4029A1E4B4C1\\9263CB3EC45E1900",
+               "v": "1696268326"
+            }
+         },
+         "45": {
+            "4F40902F3B6AE19A": {
+               "et": "13425476188983540",
+               "kbvd": false,
+               "mbd": "45\\E6DC4029A1E4B4C1\\654BAE351443E073",
+               "v": "240731042075"
+            }
+         },
+         "9": {
+            "4F40902F3B6AE19A": {
+               "et": "13425476186384441",
+               "kbvd": false,
+               "mbd": "9\\E6DC4029A1E4B4C1\\AB26FC383CFE3539",
+               "v": "1776093117"
+            }
+         }
+      },
+      "on_device": {
+         "last_version": "147.0.7727.138",
+         "model_crash_count": 0
+      },
+      "predictionmodelfetcher": {
+         "last_fetch_attempt": "13422884183976775",
+         "last_fetch_success": "13422884184179832"
+      }
+   },
+   "os_crypt": {
+      "audit_enabled": true,
+      "encrypted_key": "RFBBUEkBAAAA0Iyd3wEV0RGMegDAT8KX6wEAAAAO7nIf6JGpS6nQwtydkpjuEAAAABwAAABHAG8AbwBnAGwAZQAgAEMAaAByAG8AbQBlAAAAEGYAAAABAAAgAAAAMAgq6vcspBhPzn9+WIbpFY7ldMH8nXKco5KypGeV3IMAAAAADoAAAAACAAAgAAAA9CtCKBQrMmAKsU3eXh5UxGxtHk9gJfSzDVS+iwu7DFUwAAAAo8MsplUaRwvqYwuBKIAxXQo6KooeAYtfiNuhmMIQfA44C08RP3pvMcmUpsb9YLzaQAAAAL1/KIqQTt/OPsN0pouEZf/Et9xyfrivF2LD1EDLdGMENdriJZJtNyXy6neu0hLugcgiCZ85mjsZBb0S3C2voI0="
+   },
+   "os_update_handler_enabled": true,
+   "performance_intervention": {
+      "last_daily_sample": "13422884174082552"
+   },
+   "platform_experience_helper": {
+      "disable_notifications": false
+   },
+   "policy": {
+      "last_statistics_update": "13422884173957431"
+   },
+   "profile": {
+      "info_cache": {
+         "Default": {
+            "active_time": 1778410574.077358,
+            "avatar_icon": "chrome://theme/IDR_PROFILE_AVATAR_26",
+            "background_apps": false,
+            "default_avatar_fill_color": -14737376,
+            "default_avatar_stroke_color": -3684409,
+            "force_signin_profile_locked": false,
+            "gaia_id": "",
+            "is_consented_primary_account": false,
+            "is_ephemeral": false,
+            "is_using_default_avatar": true,
+            "is_using_default_name": true,
+            "managed_user_id": "",
+            "metrics_bucket_index": 1,
+            "name": "Your Chrome",
+            "profile_color_seed": -5715974,
+            "profile_highlight_color": -14737376,
+            "signin.with_credential_provider": false,
+            "user_name": ""
+         }
+      },
+      "last_active_profiles": [ "Default" ],
+      "last_used": "Default",
+      "metrics": {
+         "next_bucket_index": 2
+      },
+      "profile_counts_reported": "13422884173960492",
+      "profiles_order": [ "Default" ]
+   },
+   "profile_network_context_service": {
+      "http_cache_finch_experiment_groups": "None None None None"
+   },
+   "session_id_generator_last_value": "711662605",
+   "signin": {
+      "active_accounts_last_emitted": "13422884173887200"
+   },
+   "ssl": {
+      "rev_checking": {
+         "enabled": false
+      }
+   },
+   "subresource_filter": {
+      "ruleset_version": {
+         "checksum": 0,
+         "content": "",
+         "format": 0
+      }
+   },
+   "tab_stats": {
+      "discards_external": 0,
+      "discards_frozen": 0,
+      "discards_proactive": 0,
+      "discards_suggested": 0,
+      "discards_urgent": 0,
+      "last_daily_sample": "13422884173916973",
+      "max_tabs_per_window": 1,
+      "reloads_external": 0,
+      "reloads_frozen": 0,
+      "reloads_proactive": 0,
+      "reloads_suggested": 0,
+      "reloads_urgent": 0,
+      "total_tab_count_max": 1,
+      "window_count_max": 1
+   },
+   "toast": {
+      "non_milestone_update_toast_version": "147.0.7727.138"
+   },
+   "ukm": {
+      "persisted_logs": [  ]
+   },
+   "uninstall_metrics": {
+      "installation_date2": "1776002277"
+   },
+   "updateclientdata": {
+      "apps": {
+         "{cd7cc169-013a-4c79-94bc-cf5c8d78cccf}": {
+            "cohort": "1:3g5f:",
+            "cohortname": "Auto",
+            "dla": 7069,
+            "dlrc": 7069,
+            "installdate": 7069,
+            "pf": "27616f9a-b43e-4dde-9d47-752d43f1b110"
+         }
+      }
+   },
+   "user_experience_metrics": {
+      "client_id2": "e2495670-57b5-4275-a4cf-36cab9cf7a62",
+      "client_id_timestamp": "1776002277",
+      "limited_entropy_randomization_source": "DCED5CB95DCA00D37E1ADA2363E65582",
+      "log_record_id": 2,
+      "low_entropy_source3": 2952,
+      "machine_id": 11081045,
+      "pseudo_low_entropy_source": 379,
+      "session_id": 0,
+      "stability": {
+         "browser_last_live_timestamp": "13422884173879061",
+         "saved_system_profile": "CNCHv88GEhExNDcuMC43NzI3LjEzOC02NBjQru7OBiIFZW4tVVMqGAoKV2luZG93cyBOVBIKMTAuMC4yNjIwMDJoCgZ4ODZfNjQQ230YgICAyPb/HyIEODNHUygBMIAMOOAGQgoIABAAGgAyADoATXfEDUNVfSIOQ2UAAKA/ahgKDEdlbnVpbmVJbnRlbBDyjCQYDCABKASCAQCKAQCqAQZ4ODZfNjSwAQFKCg1tIzpeFdCG4llKCg1BkPK2FYCNfcpKCg2St1ezFTCu8txKCg0FDvD0FYCNfcpQBFoCCABqCAgAEAA4AEAAgAHQru7OBpgBAPgBiBeAAv///////////wGIAgGSAiRlMjQ5NTY3MC01N2I1LTQyNzUtYTRjZi0zNmNhYjljZjdhNjKoAvsCsgJkZB450jfirX7FiAAqfsiwbNjALbHuai1/Kn4sxUy0VBNUH43yHLx5YmN3Hn15S6pp52w1Yj86Sxcd+/Bw2lMG5zkL3aInRINJLbwLm2Prbd32rUe16BJXNqtioimEi7j/TPMNXfECakIeW3wWTO4=",
+         "saved_system_profile_hash": "464BF32883A1BA2E07A05DB69D0AFD0B64D5CBF6",
+         "stats_buildtime": "1777320912",
+         "stats_version": "147.0.7727.138-64",
+         "system_crash_count": 0
+      }
+   },
+   "variations_crash_streak": 1,
+   "variations_google_groups": {
+      "Default": [  ]
+   },
+   "was": {
+      "restarted": false
+   }
+}
+[1778410604.207][INFO]: ChromeDriver supports communication with Chrome via pipes. This is more reliable and more secure.
+[1778410604.207][INFO]: Use the --remote-debugging-pipe Chrome switch instead of the default --remote-debugging-port to enable this communication mode.
+[1778410604.208][INFO]: Launching chrome: "C:\Program Files\Google\Chrome\Application\chrome.exe" --allow-pre-commit-input --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-client-side-phishing-detection --disable-default-apps --disable-dev-shm-usage --disable-features=IgnoreDuplicateNavs,Prewarm --disable-hang-monitor --disable-popup-blocking --disable-prompt-on-repost --disable-sync --enable-logging=stderr --log-level=0 --no-first-run --no-sandbox --no-service-autorun --password-store=basic --profile-directory=Default --remote-debugging-port=0 --test-type=webdriver --use-mock-keychain --user-data-dir="f:\toolfb\chrome_profile"
+[1778410604.278][INFO]: [226ac65d6f8898fbcb7dff713719c1c1] RESPONSE InitSession ERROR session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.
