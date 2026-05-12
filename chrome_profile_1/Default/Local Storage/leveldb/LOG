@@ -1,27 +1,6 @@
-2026/05/11-19:09:52.211 3354 Reusing MANIFEST f:\toolfb\chrome_profile_1\Default\Local Storage\leveldb/MANIFEST-000001
-2026/05/11-19:09:52.216 3354 Recovering log #7
-2026/05/11-19:09:52.216 3354 Reusing old log f:\toolfb\chrome_profile_1\Default\Local Storage\leveldb/000007.log 
-2026/05/11-19:21:52.764 5acc Level-0 table #11: started
-2026/05/11-19:21:52.774 5acc Level-0 table #11: 30571 bytes OK
-2026/05/11-19:21:52.778 5acc Delete type=0 #7
-2026/05/11-19:49:52.764 5acc Level-0 table #13: started
-2026/05/11-19:49:52.769 5acc Level-0 table #13: 16116 bytes OK
-2026/05/11-19:49:52.773 5acc Delete type=0 #10
-2026/05/11-20:17:52.777 5acc Level-0 table #15: started
-2026/05/11-20:17:52.784 5acc Level-0 table #15: 12417 bytes OK
-2026/05/11-20:17:52.787 5acc Delete type=0 #12
-2026/05/11-20:54:52.764 5acc Level-0 table #17: started
-2026/05/11-20:54:52.766 5acc Level-0 table #17: 15710 bytes OK
-2026/05/11-20:54:52.769 5acc Delete type=0 #14
-2026/05/11-20:54:52.769 5acc Compacting 4@0 + 1@1 files
-2026/05/11-20:54:52.773 5acc Generated table #18@0: 683 keys, 51899 bytes
-2026/05/11-20:54:52.773 5acc Compacted 4@0 + 1@1 files => 51899 bytes
-2026/05/11-20:54:52.774 5acc compacted to: files[ 0 1 1 0 0 0 0 ]
-2026/05/11-20:54:52.774 5acc Delete type=2 #8
-2026/05/11-20:54:52.774 5acc Delete type=2 #11
-2026/05/11-20:54:52.774 5acc Delete type=2 #13
-2026/05/11-20:54:52.774 5acc Delete type=2 #15
-2026/05/11-20:54:52.774 5acc Delete type=2 #17
-2026/05/11-21:41:52.766 5acc Level-0 table #20: started
-2026/05/11-21:41:52.788 5acc Level-0 table #20: 9795 bytes OK
-2026/05/11-21:41:52.792 5acc Delete type=0 #16
+2026/05/12-22:13:27.026 ad8 Reusing MANIFEST f:\toolfb\chrome_profile_1\Default\Local Storage\leveldb/MANIFEST-000001
+2026/05/12-22:13:27.031 ad8 Recovering log #19
+2026/05/12-22:13:27.032 ad8 Reusing old log f:\toolfb\chrome_profile_1\Default\Local Storage\leveldb/000019.log 
+2026/05/12-22:37:27.584 3564 Level-0 table #23: started
+2026/05/12-22:37:27.590 3564 Level-0 table #23: 99676 bytes OK
+2026/05/12-22:37:27.593 3564 Delete type=0 #19
