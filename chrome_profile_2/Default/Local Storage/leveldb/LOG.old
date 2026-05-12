@@ -1,15 +1,6 @@
-2026/05/12-22:28:03.901 2c1c Reusing MANIFEST f:\toolfb\chrome_profile_2\Default\Local Storage\leveldb/MANIFEST-000001
-2026/05/12-22:28:03.905 2c1c Recovering log #13
-2026/05/12-22:28:03.906 2c1c Reusing old log f:\toolfb\chrome_profile_2\Default\Local Storage\leveldb/000013.log 
-2026/05/12-22:33:21.806 2984 Level-0 table #17: started
-2026/05/12-22:33:21.828 2984 Level-0 table #17: 9806 bytes OK
-2026/05/12-22:33:21.831 2984 Delete type=0 #13
-2026/05/12-22:33:21.832 2984 Compacting 4@0 + 1@1 files
-2026/05/12-22:33:21.843 2984 Generated table #18@0: 721 keys, 31122 bytes
-2026/05/12-22:33:21.843 2984 Compacted 4@0 + 1@1 files => 31122 bytes
-2026/05/12-22:33:21.844 2984 compacted to: files[ 0 1 1 0 0 0 0 ]
-2026/05/12-22:33:21.847 2984 Delete type=2 #8
-2026/05/12-22:33:21.847 2984 Delete type=2 #10
-2026/05/12-22:33:21.847 2984 Delete type=2 #12
-2026/05/12-22:33:21.848 2984 Delete type=2 #14
-2026/05/12-22:33:21.848 2984 Delete type=2 #17
+2026/05/12-23:03:52.518 1e44 Reusing MANIFEST f:\toolfb\chrome_profile_2\Default\Local Storage\leveldb/MANIFEST-000001
+2026/05/12-23:03:52.523 1e44 Recovering log #16
+2026/05/12-23:03:52.524 1e44 Reusing old log f:\toolfb\chrome_profile_2\Default\Local Storage\leveldb/000016.log 
+2026/05/12-23:12:53.184 343c Level-0 table #21: started
+2026/05/12-23:12:53.187 343c Level-0 table #21: 12356 bytes OK
+2026/05/12-23:12:53.189 343c Delete type=0 #16

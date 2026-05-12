@@ -54,11 +54,17 @@ class ProfessionalGroupPost(ctk.CTk):
         self._create_main_content()
         self._create_footer()
         
-        # Thêm sub-tab đầu tiên
-        self.add_sub_tab()
+        # Kiểm tra có file lưu không trước khi tạo tab mặc định
+        save_dir = Path(__file__).parent / "saved_data"
+        save_path = save_dir / f"instance_{self.instance_id}_data.json"
         
-        # Load data đã lưu (nếu có)
-        self.after(500, self._load_data_async)
+        if save_path.exists():
+            # Có file lưu → không tạo tab mặc định, load sẽ tạo tab
+            self.after(500, self._load_data_async)
+        else:
+            # Không có file → tạo tab mặc định
+            self.add_sub_tab()
+            self.after(500, self._load_data_async)
     
     def _create_header(self):
         """Header với nút mở Chrome và thông tin"""
@@ -330,6 +336,16 @@ class ProfessionalGroupPost(ctk.CTk):
         tab.links = tab.ui_refs['txt_links'].get("1.0", "end").strip()
         # images đã được cập nhật trực tiếp qua methods
     
+    def save_all_tabs_data(self):
+        """Lưu data từ UI vào TẤT CẢ sub-tabs trước khi chạy campaign"""
+        for i, tab in enumerate(self.sub_tabs):
+            try:
+                if 'txt_content' in tab.ui_refs and 'txt_links' in tab.ui_refs:
+                    tab.content = tab.ui_refs['txt_content'].get("1.0", "end").strip()
+                    tab.links = tab.ui_refs['txt_links'].get("1.0", "end").strip()
+            except Exception as e:
+                print(f"[SAVE] Lỗi lưu tab {i}: {e}")
+    
     def select_images_for_tab(self, tab_index):
         """Chọn ảnh cho sub-tab cụ thể"""
         if tab_index < 0 or tab_index >= len(self.sub_tabs):
@@ -420,8 +436,8 @@ class ProfessionalGroupPost(ctk.CTk):
             self.btn_run_all.configure(text="🚀 CHẠY TẤT CẢ SUB-TABS", fg_color="#dc3545")
             return
         
-        # Lưu data hiện tại
-        self.save_current_tab_data()
+        # Lưu data TẤT CẢ các tab (quan trọng!)
+        self.save_all_tabs_data()
         
         # Kiểm tra có sub-tab nào có data không
         valid_tabs = []
@@ -456,21 +472,18 @@ class ProfessionalGroupPost(ctk.CTk):
             
             tab = self.sub_tabs[tab_idx]
             
-            # Log chuyển tab
-            print(f"\n{'='*50}")
-            print(f"[CAMPAIGN] Chuyển sang {tab.name} ({idx+1}/{total_tabs})")
-            print(f"{'='*50}")
-            
-            # Highlight tab đang chạy - capture giá trị đúng
+            # Highlight tab đang chạy
             current_tab_idx = tab_idx
             current_tab = tab
             current_idx = idx + 1
+            
+            print(f"\n[CAMPAIGN] ===== {tab.name} ({idx+1}/{total_tabs}) =====")
             
             self.after(0, lambda i=current_tab_idx: self.switch_to_subtab(i))
             self.after(0, lambda t=current_tab, c=f"🔄 Đang chạy ({current_idx}/{total_tabs})...": 
                         t.ui_refs['lbl_status'].configure(text=c, text_color="#1877F2"))
             self.after(0, lambda n=current_tab.name, i=current_idx, t=total_tabs: 
-                        self._show_status(f"▶ Đang chạy {n} ({i}/{t})"))
+                        self._show_status(f"▶ Bắt đầu {n} ({i}/{t}) - Đăng {len([l.strip() for l in tab.links.split(chr(10)) if l.strip()])} link..."))
             
             # Parse links
             links = [l.strip() for l in tab.links.split('\n') if l.strip()]
@@ -507,15 +520,16 @@ class ProfessionalGroupPost(ctk.CTk):
                     self.after(0, lambda d=delay: self._show_status(f"⏸ Nghỉ {d}s..."))
                     time.sleep(delay)
             
-            # Mark completed
+            # Mark completed - TẤT CẢ LINK CỦA TAB ĐÃ ĐĂNG XONG
             tab.is_completed = True
-            print(f"[CAMPAIGN] ✅ {tab.name} HOÀN THÀNH")
+            print(f"[CAMPAIGN] ✅ {tab.name} HOÀN THÀNH - Tất cả {total_links} link đã đăng")
             
-            # Delay giữa các tab (trừ tab cuối)
+            # Delay giữa các tab (trừ tab cuối) - CHỜ TRƯỚC KHI CHUYỂN TAB KẾ
             if self.is_running and idx < len(tab_indices) - 1:
                 delay = random.randint(15, 30)
-                print(f"[CAMPAIGN] Nghỉ {delay}s trước khi sang tab tiếp theo...")
-                self.after(0, lambda d=delay: self._show_status(f"⏸ Chuyển tab sau {d}s..."))
+                next_tab = self.sub_tabs[tab_indices[idx+1]].name
+                print(f"[CAMPAIGN] Nghỉ {delay}s trước khi chuyển sang {next_tab}...")
+                self.after(0, lambda d=delay, n=next_tab: self._show_status(f"⏸ Nghỉ {d}s trước khi chuyển {n}..."))
                 time.sleep(delay)
             
             completed_tab = tab
@@ -566,14 +580,16 @@ class ProfessionalGroupPost(ctk.CTk):
             }
             
             for tab in self.sub_tabs:
-                tab_data = {
-                    "name": tab.name,
-                    "content": tab.content,
-                    "links": tab.links,
-                    "images": tab.images,  # Lưu cả đường dẫn ảnh
-                    "is_completed": tab.is_completed
-                }
-                data["tabs"].append(tab_data)
+                # Chỉ lưu tab có dữ liệu (không trống)
+                if tab.content or tab.links or tab.images:
+                    tab_data = {
+                        "name": tab.name,
+                        "content": tab.content,
+                        "links": tab.links,
+                        "images": tab.images,
+                        "is_completed": tab.is_completed
+                    }
+                    data["tabs"].append(tab_data)
             
             # Lưu vào file
             save_path = self._get_save_file_path()
@@ -609,16 +625,18 @@ class ProfessionalGroupPost(ctk.CTk):
                     print("[LOAD] Xóa tab mặc định trống")
                     self.remove_sub_tab(0)
             
-            # Tạo các tab từ data đã lưu
+            # Tạo các tab từ data đã lưu (bỏ qua tab trống)
             loaded_count = 0
             for tab_data in data.get("tabs", []):
-                self.add_sub_tab_with_data(
-                    name=tab_data.get("name", f"Nội dung {loaded_count+1}"),
-                    content=tab_data.get("content", ""),
-                    links=tab_data.get("links", ""),
-                    images=tab_data.get("images", [])
-                )
-                loaded_count += 1
+                # Chỉ load tab có dữ liệu
+                if tab_data.get("content") or tab_data.get("links") or tab_data.get("images"):
+                    self.add_sub_tab_with_data(
+                        name=tab_data.get("name", f"Nội dung {loaded_count+1}"),
+                        content=tab_data.get("content", ""),
+                        links=tab_data.get("links", ""),
+                        images=tab_data.get("images", [])
+                    )
+                    loaded_count += 1
             
             # Chuyển về tab đầu tiên
             if self.sub_tabs:

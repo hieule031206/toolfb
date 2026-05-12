@@ -1,26 +1,15 @@
 import json
-
 import time
-
 import random
-
 import socket
-
 from pathlib import Path
-
 from datetime import datetime
-
 from selenium import webdriver
-
 from selenium.webdriver.chrome.service import Service
-
 from selenium.webdriver.common.by import By
-
-from selenium.webdriver.support.ui import WebDriverWait
-
-from selenium.webdriver.support import expected_conditions as EC
-
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 
@@ -236,19 +225,15 @@ class FacebookBot:
             print(f"[Tab {self.instance_id}] Finding post trigger button...")
 
             trigger_xpaths = [
-
+                "//div[@role='button']//span[contains(text(), 'Bạn viết gì đi')]",
+                "//div[@role='button']//span[contains(text(), 'viết gì')]",
                 "//div[@role='main']//div[@role='button'][contains(., 'Bạn viết gì đi') or contains(., 'Bạn đang nghĩ gì')]",
-
                 "//div[@role='main']//span[contains(text(), 'Bạn viết gì đi') or contains(text(), 'Bạn đang nghĩ gì')]",
-
                 "//div[@role='main']//div[@aria-label='Tạo bài viết' or @aria-label='Create a post']",
-
                 "//div[@role='main']//div[@data-pagelet='GroupInlineComposer']//div[@role='button']",
-
                 "//form//div[@role='button'][contains(., 'viết')]",
-
                 "//div[contains(@class, 'composer')]//div[@role='button']",
-
+                "//div[contains(@class, 'x1lk') or contains(@class, 'x1y1')]//div[@role='button']",
             ]
 
             btn_open = None
@@ -270,76 +255,50 @@ class FacebookBot:
             
 
             if not btn_open:
-
-                # Thử tìm bất kỳ nút nào có text liên quan đăng bài
-
+                # Thử click trực tiếp vào input composer mà không cần mở dialog
                 try:
-
-                    btn_open = self.driver.find_element(By.XPATH, "//div[@role='button'][contains(., 'viết') or contains(., 'Viết') or contains(., 'post') or contains(., 'Post')]")
-
-                    print(f"[Tab {self.instance_id}] Found trigger by text search")
-
+                    direct_input = self.driver.find_element(By.XPATH, "//div[@role='main']//div[@contenteditable='true']")
+                    print(f"[Tab {self.instance_id}] Found direct input, clicking...")
+                    self.driver.execute_script("arguments[0].click();", direct_input)
+                    time.sleep(2)
+                    content_input = direct_input
+                    skip_dialog = True
                 except:
-
                     return False, "Lỗi: Không tìm thấy nút mở hộp đăng bài. Facebook có thể đã thay đổi giao diện."
-
-            
-
-            self.driver.execute_script("arguments[0].click();", btn_open)
-
-            print(f"[Tab {self.instance_id}] Clicked trigger button")
-
-            time.sleep(3)  # Chờ dialog mở
+            else:
+                self.driver.execute_script("arguments[0].click();", btn_open)
+                print(f"[Tab {self.instance_id}] Clicked trigger button")
+                time.sleep(3)  # Chờ dialog mở
+                skip_dialog = False
 
 
 
             # --- BƯỚC 2: ĐIỀN NỘI DUNG TRƯỚC (QUAN TRỌNG) ---
-
-            print(f"[Tab {self.instance_id}] Finding content input...")
-
-            # Chờ dialog render xong
-
-            time.sleep(2)
-
-            # Quan trọng: Chỉ tìm ô textbox nằm TRONG cái dialog đang hiển thị (Tạo bài viết)
-
-            # Điều này giúp loại bỏ hoàn toàn các ô bình luận (hello) như trong ảnh bạn gửi
-
-            dialog_input_xpaths = [
-
-                "//div[@role='dialog']//div[@role='textbox']",
-
-                "//div[@role='dialog']//textarea",
-
-                "//div[@role='dialog']//div[@contenteditable='true']",
-
-                "//form//div[@contenteditable='true']",
-
-            ]
-
             
-
-            content_input = None
-
-            for i, xpath in enumerate(dialog_input_xpaths):
-
-                try:
-
-                    content_input = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
-
-                    print(f"[Tab {self.instance_id}] Found content input with xpath {i+1}")
-
-                    break
-
-                except:
-
-                    continue
-
-            
-
-            if not content_input:
-
-                return False, "Lỗi: Không tìm thấy ô nhập nội dung trong dialog"
+            if not skip_dialog:
+                print(f"[Tab {self.instance_id}] Finding content input in dialog...")
+                time.sleep(2)
+                
+                dialog_input_xpaths = [
+                    "//div[@role='dialog']//div[@role='textbox']",
+                    "//div[@role='dialog']//textarea",
+                    "//div[@role='dialog']//div[@contenteditable='true']",
+                    "//form//div[@contenteditable='true']",
+                ]
+                
+                content_input = None
+                for i, xpath in enumerate(dialog_input_xpaths):
+                    try:
+                        content_input = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
+                        print(f"[Tab {self.instance_id}] Found content input with xpath {i+1}")
+                        break
+                    except:
+                        continue
+                
+                if not content_input:
+                    return False, "Lỗi: Không tìm thấy ô nhập nội dung trong dialog"
+            else:
+                print(f"[Tab {self.instance_id}] Using direct input (already found)")
 
            
 
@@ -396,8 +355,6 @@ class FacebookBot:
                     "var text = arguments[1];"
 
                     "el.focus();"
-
-                    # Simulate typing each character with proper events
 
                     "for (var i = 0; i < text.length; i++) {"
 
