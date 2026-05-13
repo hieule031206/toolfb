@@ -1,3 +1,3 @@
-2026/05/12-23:03:52.485 455c Reusing MANIFEST f:\toolfb\chrome_profile_2\Default\Sync Data\LevelDB/MANIFEST-000001
-2026/05/12-23:03:52.485 455c Recovering log #3
-2026/05/12-23:03:52.486 455c Reusing old log f:\toolfb\chrome_profile_2\Default\Sync Data\LevelDB/000003.log 
+2026/05/13-11:37:36.601 5440 Reusing MANIFEST f:\toolfb\chrome_profile_2\Default\Sync Data\LevelDB/MANIFEST-000001
+2026/05/13-11:37:36.601 5440 Recovering log #3
+2026/05/13-11:37:36.602 5440 Reusing old log f:\toolfb\chrome_profile_2\Default\Sync Data\LevelDB/000003.log 

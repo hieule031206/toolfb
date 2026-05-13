@@ -93,15 +93,22 @@ class ProfessionalGroupPost(ctk.CTk):
         main_frame.grid_columnconfigure(0, weight=1)
         main_frame.grid_rowconfigure(1, weight=1)
         
-        # Tab bar tùy chỉnh (dùng frame thay vì CTkTabview để có nút x trên mỗi tab)
-        self.tab_bar = ctk.CTkFrame(main_frame, fg_color="transparent", height=40)
-        self.tab_bar.grid(row=0, column=0, sticky="ew", pady=(0, 5))
+        # Tab bar với thanh trượt ngang (CTkScrollableFrame)
+        self.tab_bar_container = ctk.CTkFrame(main_frame, fg_color="transparent", height=40)
+        self.tab_bar_container.grid(row=0, column=0, sticky="ew", pady=(0, 5))
+        self.tab_bar_container.grid_columnconfigure(1, weight=1)  # Scrollable chiếm phần lớn
         
-        # Nút thêm tab
-        self.btn_add_tab = ctk.CTkButton(self.tab_bar, text="➕ Thêm", width=80, height=32,
+        # Nút thêm tab (bên trái, cố định)
+        self.btn_add_tab = ctk.CTkButton(self.tab_bar_container, text="➕ Thêm", width=80, height=32,
                                         command=self.add_sub_tab, font=("Arial", 11),
                                         fg_color="#28a745", hover_color="#218838")
-        self.btn_add_tab.pack(side="left", padx=(0, 10))
+        self.btn_add_tab.grid(row=0, column=0, padx=(0, 10))
+        
+        # Scrollable frame chứa các tab
+        self.tab_bar = ctk.CTkScrollableFrame(self.tab_bar_container, fg_color="transparent", 
+                                             height=40, orientation="horizontal")
+        self.tab_bar.grid(row=0, column=1, sticky="ew")
+        self.tab_bar._scrollbar.configure(height=6)  # Thanh trượt mảnh hơn
         
         # Container cho sub-tabs
         self.tab_container = ctk.CTkFrame(main_frame, fg_color="white", corner_radius=15)
@@ -187,10 +194,10 @@ class ProfessionalGroupPost(ctk.CTk):
         tooltip = "💡 Ctrl+Click: chọn ảnh | Ctrl+Shift+V: dán ảnh" if CLIPBOARD_SUPPORT else "💡 Ctrl+Click: chọn ảnh"
         ctk.CTkLabel(content_frame, text=tooltip, font=("Arial", 10), text_color="gray").grid(row=2, column=0, sticky="e", padx=15, pady=(0, 10))
         
-        # Bind
-        txt_content.bind("<Control-Button-1>", lambda e, t=idx: self.select_images_for_tab(t))
+        # Bind - dùng tab_data object thay vì index
+        txt_content.bind("<Control-Button-1>", lambda e, td=tab_data: self.select_images_for_tab_by_data(td))
         if CLIPBOARD_SUPPORT:
-            txt_content.bind("<Control-Shift-KeyPress-v>", lambda e, t=idx: self.paste_images_for_tab(t))
+            txt_content.bind("<Control-Shift-KeyPress-v>", lambda e, td=tab_data: self.paste_images_for_tab_by_data(td))
         
         # === ROW 0, COL 1: LINKS (BÊN PHẢI) ===
         links_frame = ctk.CTkFrame(frame, fg_color="white", corner_radius=10, border_width=2, border_color="#dee2e6")
@@ -234,23 +241,22 @@ class ProfessionalGroupPost(ctk.CTk):
         img_btn_frame = ctk.CTkFrame(images_frame, fg_color="transparent")
         img_btn_frame.pack(fill="x", padx=15, pady=(3, 15))
         
-        def make_select_handler(tab_idx):
-            return lambda: self.select_images_for_tab(tab_idx)
+        def make_select_handler(tab_data_ref):
+            return lambda: self.select_images_for_tab_by_data(tab_data_ref)
         
-        def make_clear_handler(tab_idx):
-            return lambda: self.clear_images_for_tab(tab_idx)
+        def make_clear_handler(tab_data_ref):
+            return lambda: self.clear_images_for_tab_by_data(tab_data_ref)
         
-        # Nút chọn ảnh
+        # Nút chọn ảnh - dùng tab_data object
         btn_select = ctk.CTkButton(img_btn_frame, text="📎 CHỌN ẢNH", width=140, height=40,
-                                  command=make_select_handler(idx),
+                                  command=make_select_handler(tab_data),
                                   fg_color="#1877F2", hover_color="#166fe5",
                                   font=("Arial", 13, "bold"), corner_radius=8)
         btn_select.pack(side="left", padx=(0, 15), pady=5)
         
-        # Nút xóa ảnh
+        # Nút xóa ảnh - dùng tab_data object
         btn_clear = ctk.CTkButton(img_btn_frame, text="🗑️ XÓA", width=100, height=40,
-                                 command=make_clear_handler(idx),
-                                 fg_color="#dc3545", hover_color="#c82333",
+                                 command=make_clear_handler(tab_data),
                                  font=("Arial", 13), corner_radius=8)
         btn_clear.pack(side="left", pady=5)
         
@@ -267,9 +273,30 @@ class ProfessionalGroupPost(ctk.CTk):
         
         self.subtab_frames.append(frame)
         
-        # Chuyển đến tab mới
+        # Chuyển đến tab mới và scroll đến tab đó
         self.switch_to_subtab(idx)
+        self._scroll_to_tab(idx)
         self._update_progress()
+    
+    def _scroll_to_tab(self, index):
+        """Scroll đến tab chỉ định trong tab bar"""
+        if index < 0 or index >= len(self.sub_tabs):
+            return
+        
+        try:
+            tab_frame = self.sub_tabs[index].ui_refs.get('tab_btn_frame')
+            if tab_frame:
+                # Scroll để tab ở giữa view
+                tab_frame.update_idletasks()
+                x = tab_frame.winfo_x()
+                width = tab_frame.winfo_width()
+                canvas = self.tab_bar._parent_canvas
+                canvas_width = canvas.winfo_width()
+                # Scroll đến vị trí giữa tab
+                scroll_x = max(0, x - (canvas_width - width) // 2)
+                canvas.xview_moveto(scroll_x / canvas.bbox("all")[2] if canvas.bbox("all") else 0)
+        except Exception as e:
+            print(f"[SCROLL] Lỗi: {e}")
     
     def switch_to_subtab(self, index):
         """Chuyển đến sub-tab chỉ định"""
@@ -294,6 +321,9 @@ class ProfessionalGroupPost(ctk.CTk):
         if btn_frame:
             btn_frame.configure(fg_color="#1877F2")  # Màu xanh active
         
+        # Scroll đến tab đang active
+        self._scroll_to_tab(index)
+        
         self._update_progress()
     
     def remove_sub_tab(self, index):
@@ -317,10 +347,15 @@ class ProfessionalGroupPost(ctk.CTk):
         # Cập nhật lại index cho các tab sau
         for i, tab in enumerate(self.sub_tabs):
             tab.name = f"Nội dung {i + 1}"
-            # Cập nhật text nút
+            # Cập nhật text nút và command cho tất cả nút
             for widget in tab.ui_refs['tab_btn_frame'].winfo_children():
-                if isinstance(widget, ctk.CTkButton) and widget.cget("text") != "×":
-                    widget.configure(text=tab.name, command=lambda idx=i: self.switch_to_subtab(idx))
+                if isinstance(widget, ctk.CTkButton):
+                    if widget.cget("text") == "×":
+                        # Nút xóa - cập nhật command
+                        widget.configure(command=lambda idx=i: self.remove_sub_tab(idx))
+                    else:
+                        # Nút chuyển tab - cập nhật text và command
+                        widget.configure(text=tab.name, command=lambda idx=i: self.switch_to_subtab(idx))
         
         # Chuyển về tab đầu
         self.switch_to_subtab(0)
@@ -346,12 +381,13 @@ class ProfessionalGroupPost(ctk.CTk):
             except Exception as e:
                 print(f"[SAVE] Lỗi lưu tab {i}: {e}")
     
-    def select_images_for_tab(self, tab_index):
-        """Chọn ảnh cho sub-tab cụ thể"""
-        if tab_index < 0 or tab_index >= len(self.sub_tabs):
+    def select_images_for_tab_by_data(self, tab_data):
+        """Chọn ảnh cho sub-tab bằng tab_data object (tránh lỗi index)"""
+        if not tab_data or tab_data not in self.sub_tabs:
+            self._show_status("Lỗi: Tab không tồn tại")
             return
         
-        tab_name = self.sub_tabs[tab_index].name
+        tab_name = tab_data.name
         
         files = filedialog.askopenfilenames(
             title=f"Chọn ảnh cho {tab_name}",
@@ -359,19 +395,21 @@ class ProfessionalGroupPost(ctk.CTk):
             initialdir=str(Path.home() / "Pictures")
         )
         if files:
-            self.sub_tabs[tab_index].images.extend(files)
-            self._update_image_label(tab_index)
+            tab_data.images.extend(files)
+            self._update_image_label_by_data(tab_data)
             self._show_status(f"{tab_name}: Đã chọn {len(files)} ảnh")
     
-    def clear_images_for_tab(self, tab_index):
-        """Xóa ảnh cho sub-tab"""
-        self.sub_tabs[tab_index].images = []
-        self._update_image_label(tab_index)
-        self._show_status(f"{self.sub_tabs[tab_index].name}: Đã xóa ảnh")
+    def clear_images_for_tab_by_data(self, tab_data):
+        """Xóa ảnh cho sub-tab bằng tab_data object"""
+        if not tab_data:
+            return
+        tab_data.images = []
+        self._update_image_label_by_data(tab_data)
+        self._show_status(f"{tab_data.name}: Đã xóa ảnh")
     
-    def paste_images_for_tab(self, tab_index):
-        """Paste ảnh từ clipboard cho sub-tab"""
-        if not CLIPBOARD_SUPPORT:
+    def paste_images_for_tab_by_data(self, tab_data):
+        """Paste ảnh từ clipboard cho sub-tab bằng tab_data object"""
+        if not CLIPBOARD_SUPPORT or not tab_data:
             return
         
         try:
@@ -384,8 +422,8 @@ class ProfessionalGroupPost(ctk.CTk):
                 win32clipboard.CloseClipboard()
                 image_files = [f for f in data if f.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.webp', '.bmp'))]
                 if image_files:
-                    self.sub_tabs[tab_index].images.extend(image_files)
-                    self._update_image_label(tab_index)
+                    tab_data.images.extend(image_files)
+                    self._update_image_label_by_data(tab_data)
                     self._show_status(f"Đã dán {len(image_files)} ảnh từ clipboard")
                     return
             except:
@@ -397,8 +435,8 @@ class ProfessionalGroupPost(ctk.CTk):
                 if hasattr(img, 'save'):
                     temp_path = os.path.join(tempfile.gettempdir(), f"pasted_{datetime.now().strftime('%H%M%S')}.png")
                     img.save(temp_path, "PNG")
-                    self.sub_tabs[tab_index].images.append(temp_path)
-                    self._update_image_label(tab_index)
+                    tab_data.images.append(temp_path)
+                    self._update_image_label_by_data(tab_data)
                     self._show_status("Đã dán ảnh từ clipboard")
             except:
                 pass
@@ -408,11 +446,18 @@ class ProfessionalGroupPost(ctk.CTk):
     def _update_image_label(self, tab_index):
         """Cập nhật label ảnh"""
         tab = self.sub_tabs[tab_index]
-        lbl = tab.ui_refs['lbl_images']
+        self._update_image_label_by_data(tab)
+    
+    def _update_image_label_by_data(self, tab_data):
+        """Cập nhật label ảnh theo tab_data object"""
+        if not tab_data or 'lbl_images' not in tab_data.ui_refs:
+            return
         
-        if tab.images:
-            count = len(tab.images)
-            names = ", ".join([Path(f).name for f in tab.images[:2]])
+        lbl = tab_data.ui_refs['lbl_images']
+        
+        if tab_data.images:
+            count = len(tab_data.images)
+            names = ", ".join([Path(f).name for f in tab_data.images[:2]])
             if count > 2:
                 names += f" +{count-2}"
             lbl.configure(text=f"📷 {count} ảnh: {names}", text_color="#28a745")
@@ -569,8 +614,8 @@ class ProfessionalGroupPost(ctk.CTk):
     def save_data(self):
         """Lưu tất cả sub-tabs vào file JSON"""
         try:
-            # Lưu data hiện tại trước
-            self.save_current_tab_data()
+            # Lưu data từ UI vào TẤT CẢ sub-tabs (không chỉ tab hiện tại)
+            self.save_all_tabs_data()
             
             # Chuẩn bị data để lưu
             data = {
@@ -596,7 +641,8 @@ class ProfessionalGroupPost(ctk.CTk):
             with open(save_path, 'w', encoding='utf-8') as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
             
-            print(f"[SAVE] Đã lưu {len(self.sub_tabs)} sub-tabs vào {save_path}")
+            saved_count = len(data["tabs"])
+            print(f"[SAVE] Đã lưu {saved_count}/{len(self.sub_tabs)} sub-tabs vào {save_path}")
             return True
         except Exception as e:
             print(f"[SAVE] Lỗi khi lưu: {e}")
@@ -705,9 +751,9 @@ class ProfessionalGroupPost(ctk.CTk):
         tooltip = "💡 Ctrl+Click: chọn ảnh | Ctrl+Shift+V: dán ảnh" if CLIPBOARD_SUPPORT else "💡 Ctrl+Click: chọn ảnh"
         ctk.CTkLabel(content_frame, text=tooltip, font=("Arial", 10), text_color="gray").grid(row=2, column=0, sticky="e", padx=15, pady=(0, 10))
         
-        txt_content.bind("<Control-Button-1>", lambda e, t=idx: self.select_images_for_tab(t))
+        txt_content.bind("<Control-Button-1>", lambda e, td=tab_data: self.select_images_for_tab_by_data(td))
         if CLIPBOARD_SUPPORT:
-            txt_content.bind("<Control-Shift-KeyPress-v>", lambda e, t=idx: self.paste_images_for_tab(t))
+            txt_content.bind("<Control-Shift-KeyPress-v>", lambda e, td=tab_data: self.paste_images_for_tab_by_data(td))
         
         # Links frame (right)
         links_frame = ctk.CTkFrame(frame, fg_color="white", corner_radius=10, border_width=2, border_color="#dee2e6")
@@ -761,20 +807,20 @@ class ProfessionalGroupPost(ctk.CTk):
         img_btn_frame = ctk.CTkFrame(images_frame, fg_color="transparent")
         img_btn_frame.pack(fill="x", padx=15, pady=(3, 15))
         
-        def make_select_handler(tab_idx):
-            return lambda: self.select_images_for_tab(tab_idx)
+        def make_select_handler(tab_data_ref):
+            return lambda: self.select_images_for_tab_by_data(tab_data_ref)
         
-        def make_clear_handler(tab_idx):
-            return lambda: self.clear_images_for_tab(tab_idx)
+        def make_clear_handler(tab_data_ref):
+            return lambda: self.clear_images_for_tab_by_data(tab_data_ref)
         
         btn_select = ctk.CTkButton(img_btn_frame, text="📎 CHỌN ẢNH", width=140, height=40,
-                                  command=make_select_handler(idx),
+                                  command=make_select_handler(tab_data),
                                   fg_color="#1877F2", hover_color="#166fe5",
                                   font=("Arial", 13, "bold"), corner_radius=8)
         btn_select.pack(side="left", padx=(0, 15), pady=5)
         
         btn_clear = ctk.CTkButton(img_btn_frame, text="🗑️ XÓA", width=100, height=40,
-                                 command=make_clear_handler(idx),
+                                 command=make_clear_handler(tab_data),
                                  fg_color="#dc3545", hover_color="#c82333",
                                  font=("Arial", 13), corner_radius=8)
         btn_clear.pack(side="left", pady=5)

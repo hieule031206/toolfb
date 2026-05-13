@@ -1,2 +1,3 @@
-2026/05/11-18:40:43.965 6544 Creating DB f:\toolfb\chrome_profile_2\Default\Extension Rules since it was missing.
-2026/05/11-18:40:43.969 6544 Reusing MANIFEST f:\toolfb\chrome_profile_2\Default\Extension Rules/MANIFEST-000001
+2026/05/13-11:38:05.626 d80 Reusing MANIFEST f:\toolfb\chrome_profile_2\Default\Extension Rules/MANIFEST-000001
+2026/05/13-11:38:05.627 d80 Recovering log #3
+2026/05/13-11:38:05.627 d80 Reusing old log f:\toolfb\chrome_profile_2\Default\Extension Rules/000003.log 

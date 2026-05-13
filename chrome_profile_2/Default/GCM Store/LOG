@@ -1,3 +1,2 @@
-2026/05/12-23:22:41.199 4568 Reusing MANIFEST f:\toolfb\chrome_profile_2\Default\GCM Store/MANIFEST-000001
-2026/05/12-23:22:41.200 4568 Recovering log #3
-2026/05/12-23:22:41.201 4568 Reusing old log f:\toolfb\chrome_profile_2\Default\GCM Store/000003.log 
+2026/05/13-11:38:09.099 db8 Creating DB f:\toolfb\chrome_profile_2\Default\GCM Store since it was missing.
+2026/05/13-11:38:09.104 db8 Reusing MANIFEST f:\toolfb\chrome_profile_2\Default\GCM Store/MANIFEST-000001
