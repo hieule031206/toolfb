@@ -1,9 +1,0 @@
-2026/05/13-11:37:50.032 1f78 Reusing MANIFEST f:\toolfb\chrome_profile_1\Default\Local Storage\leveldb/MANIFEST-000001
-2026/05/13-11:37:50.036 1f78 Recovering log #33
-2026/05/13-11:37:50.037 1f78 Reusing old log f:\toolfb\chrome_profile_1\Default\Local Storage\leveldb/000033.log 
-2026/05/13-11:59:50.744 48e0 Level-0 table #36: started
-2026/05/13-11:59:50.764 48e0 Level-0 table #36: 18457 bytes OK
-2026/05/13-11:59:50.768 48e0 Delete type=0 #33
-2026/05/13-12:25:50.733 1f78 Level-0 table #38: started
-2026/05/13-12:25:50.735 1f78 Level-0 table #38: 11338 bytes OK
-2026/05/13-12:25:50.737 1f78 Delete type=0 #35
