@@ -132,9 +132,9 @@ class FacebookBot:
 
             options.add_experimental_option("useAutomationExtension", False)
 
-            driver_path = Path(__file__).parent / "cd138" / "chromedriver-win64" / "chromedriver.exe"
-
-            service = Service(executable_path=str(driver_path))
+            # Dùng webdriver-manager để tự tải chromedriver
+            from webdriver_manager.chrome import ChromeDriverManager
+            service = Service(ChromeDriverManager().install())
 
             print(f"[Tab {self.instance_id}] Starting Chrome with port {self.debug_port}...")
 
